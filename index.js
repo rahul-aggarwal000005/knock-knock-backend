@@ -10,7 +10,7 @@ const app = express();
 const axios = require("axios");
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit({
-  auth: "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",
+  auth: process.env.GITHUB_TOKEN,
 });
 
 app.use(
@@ -54,9 +54,7 @@ const logo_obj = {
 };
 // get the google results
 app.get("/api/google*", (req, res) => {
-  const search = new SerpApi.GoogleSearch(
-    "403a31dba1c19517d8dff9448a32628fd302484d06eb60393f2538df0b089f53"
-  );
+  const search = new SerpApi.GoogleSearch(process.env.GOOGLE_SERP_API);
   const params = {
     device: "desktop",
     engine: "google",
